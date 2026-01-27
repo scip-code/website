@@ -217,6 +217,11 @@
         margin-bottom: 8px;
       }
 
+      .list-columns {
+        columns: 2;
+        column-gap: 24px;
+      }
+
       .split {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -262,6 +267,10 @@
         .nav {
           flex-direction: column;
           align-items: flex-start;
+        }
+
+        .list-columns {
+          columns: 1;
         }
       }
     </style>
@@ -312,65 +321,47 @@
         <h2 class="section-title">Indexers and tooling using SCIP</h2>
         <p class="section-subtitle">
           SCIP's standard index format is already emitted by a growing ecosystem
-          of indexers across major languages, and used in tools like the
-          Sourcegraph CLI.
+          of indexers across major languages.
         </p>
-        <div class="grid grid-3">
-          <div class="card">
-            <h3>Popular indexers</h3>
-            <ul class="list">
-              <li>
-                <a href="https://github.com/sourcegraph/scip-java">
-                  scip-java (Java, Scala, Kotlin)
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/sourcegraph/scip-typescript">
-                  scip-typescript (TypeScript, JavaScript)
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/rust-lang/rust-analyzer">
-                  rust-analyzer (Rust)
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/sourcegraph/scip-clang">
-                  scip-clang (C++, C)
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/sourcegraph/scip-ruby">
-                  scip-ruby (Ruby)
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>More languages</h3>
-            <ul class="list">
-              <li>
-                <a href="https://github.com/sourcegraph/scip-python">
-                  scip-python (Python)
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/sourcegraph/scip-dotnet">
-                  scip-dotnet (C#, Visual Basic)
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/Workiva/scip-dart">
-                  scip-dart (Dart)
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/davidrjenni/scip-php">
-                  scip-php (PHP)
-                </a>
-              </li>
-            </ul>
-          </div>
+        <div class="card">
+          <ul class="list list-columns">
+            <li>
+              <a href="https://github.com/sourcegraph/scip-dotnet">
+                C#, Visual Basic
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/sourcegraph/scip-clang">C++, C</a>
+            </li>
+            <li>
+              <a href="https://github.com/Workiva/scip-dart">Dart</a>
+            </li>
+            <li>
+              <a href="https://github.com/sourcegraph/scip-go">Go</a>
+            </li>
+            <li>
+              <a href="https://github.com/sourcegraph/scip-java">
+                Java, Scala, Kotlin
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/davidrjenni/scip-php">PHP</a>
+            </li>
+            <li>
+              <a href="https://github.com/sourcegraph/scip-python">Python</a>
+            </li>
+            <li>
+              <a href="https://github.com/sourcegraph/scip-ruby">Ruby</a>
+            </li>
+            <li>
+              <a href="https://github.com/rust-lang/rust-analyzer">Rust</a>
+            </li>
+            <li>
+              <a href="https://github.com/sourcegraph/scip-typescript">
+                TypeScript, JavaScript
+              </a>
+            </li>
+          </ul>
         </div>
       </section>
 

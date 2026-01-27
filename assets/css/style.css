@@ -99,6 +99,17 @@ a {
   max-width: 520px;
 }
 
+.feature-tag {
+  border-bottom: 1px dashed var(--sky);
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+  cursor: help;
+}
+
+.feature-tag:hover {
+  color: var(--sky);
+  border-bottom-color: var(--coral);
+}
+
 .cta-row {
   display: flex;
   flex-wrap: wrap;

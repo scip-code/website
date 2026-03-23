@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="How the SCIP project is governed: Sponsor-Led Governance, roles, the SEP process, and CSC membership."
+    />
+    <title>Governance - SCIP Code Intelligence Protocol</title>
+    <link rel="icon" href="./assets/images/scip-icon-color.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="nav">
+        <div class="nav-title">
+          <a href="./index.html">
+            <img class="logo" src="./assets/images/scip-logo-color.svg" alt="SCIP" />
+          </a>
+        </div>
+        <nav class="nav-links">
+          <a href="./index.html#tools">Indexers</a>
+          <a href="./index.html#contribute">Contribute</a>
+          <a href="https://discord.gg/w5TEzebTPk" target="_blank" rel="noopener noreferrer">Discord</a>
+          <a href="https://github.com/scip-code" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </nav>
+      </header>
+
+      <section class="hero" id="top">
+        <div>
+          <span class="pill">Governance</span>
+          <h1 class="hero-title">SCIP Project Governance</h1>
+          <p class="hero-subtitle">
+            How SCIP stays stable and open: roles, the SEP process, and Core Steering Committee oversight.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="card coc">
+          <h2 class="coc-heading" id="overview">
+            <a class="coc-anchor" href="#overview">Overview</a>
+          </h2>
+          <p>
+            The SCIP Code Intelligence Protocol (SCIP) is an open source project designed to provide a
+            standard format for indexing source code.
+          </p>
+          <p>
+            To ensure the protocol remains stable, performant, and universally applicable, this project
+            operates under a <strong>Sponsor-Led Governance Model</strong>. This means that while we
+            encourage and rely on community contributions, the strategic direction and core protocol schema
+            are guided by a Core Steering Committee. This model is designed to foster a rich ecosystem of
+            language-specific indexers while maintaining a highly stable core.
+          </p>
+
+          <h2 class="coc-heading" id="roles-and-responsibilities">
+            <a class="coc-anchor" href="#roles-and-responsibilities">Roles and Responsibilities</a>
+          </h2>
+
+          <h3 class="coc-subheading" id="contributors">
+            <a class="coc-anchor" href="#contributors">1. Contributors</a>
+          </h3>
+          <p>
+            Contributors are the lifeblood of SCIP. Anyone can be a Contributor by submitting pull requests,
+            opening issues, improving documentation, or participating in discussions.
+          </p>
+          <ul class="list">
+            <li>
+              <strong>Responsibilities:</strong> Follow the
+              <a class="list-link" href="./code-of-conduct.html">Code of Conduct</a> and ensure PRs pass all
+              CI checks.
+            </li>
+          </ul>
+
+          <h3 class="coc-subheading" id="domain-maintainers">
+            <a class="coc-anchor" href="#domain-maintainers">2. Domain Maintainers</a>
+          </h3>
+          <p>
+            Because SCIP relies on a diverse ecosystem of language-specific indexers (e.g.,
+            <code>scip-typescript</code>, <code>scip-java</code>), we delegate authority over specific domains
+            to Domain Maintainers.
+          </p>
+          <ul class="list">
+            <li>
+              <strong>Authority:</strong> Domain Maintainers have merge rights (<code>CODEOWNERS</code>) over
+              their specific language indexers or tooling directories. They manage the day-to-day roadmap,
+              issue triage, and PR reviews for their domain.
+            </li>
+            <li>
+              <strong>Nomination:</strong> Contributors who demonstrate sustained, high-quality contributions
+              to a specific domain can be nominated by an existing Maintainer and approved by the Core
+              Steering Committee.
+            </li>
+          </ul>
+
+          <h3 class="coc-subheading" id="core-steering-committee-csc">
+            <a class="coc-anchor" href="#core-steering-committee-csc">3. Core Steering Committee (CSC)</a>
+          </h3>
+          <p>
+            The Core Steering Committee is the governing body of the SCIP project. It is responsible for
+            the overall architectural vision, core schema definitions, and final dispute resolution.
+          </p>
+          <ul class="list">
+            <li>
+              <strong>Authority:</strong> The CSC has final approval over all core protocol changes,
+              cross-cutting architectural decisions, and the SCIP Enhancement Proposal (SEP) process. The CSC
+              has the authority to veto technical decisions that do not align with the project's long-term
+              stability.
+            </li>
+            <li>
+              <strong>Composition:</strong> The CSC is bootstrapped, and as the project matures, seats may be
+              offered to external Domain Maintainers who have demonstrated exceptional leadership and
+              cross-domain expertise.
+            </li>
+          </ul>
+
+          <h2 class="coc-heading" id="sep-process">
+            <a class="coc-anchor" href="#sep-process">The SCIP Enhancement Proposal (SEP) Process</a>
+          </h2>
+          <p>
+            To ensure predictability and avoid wasted engineering effort, all major architectural changes,
+            protocol schema modifications, or significant new features must go through
+            <a
+              class="list-link"
+              href="https://github.com/sourcegraph/scip/blob/main/.github/ISSUE_TEMPLATE/sep.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              >the SEP process</a
+            >.
+          </p>
+          <ol class="list">
+            <li>
+              <strong>Draft:</strong> A Contributor or Maintainer submits an issue outlining the proposed
+              design, motivation, and tradeoffs (using the SEP template).
+            </li>
+            <li>
+              <strong>Discuss:</strong> The community and Maintainers debate the merits and technical details
+              of the proposal asynchronously.
+            </li>
+            <li>
+              <strong>Resolve:</strong> The Core Steering Committee reviews the proposal and the community
+              feedback. The CSC will explicitly mark the SEP as <strong>Accepted</strong>,
+              <strong>Deferred</strong>, or <strong>Rejected</strong>.
+            </li>
+            <li>
+              <strong>Implement:</strong> Only after an SEP is accepted should significant engineering time be
+              spent on the implementation pull request.
+            </li>
+          </ol>
+
+          <h2 class="coc-heading" id="decision-making">
+            <a class="coc-anchor" href="#decision-making">Decision Making</a>
+          </h2>
+          <p>
+            For day-to-day operations within specific domains, Domain Maintainers operate on a "lazy
+            consensus" model—if no maintainer objects to a PR within a reasonable timeframe, it is merged.
+          </p>
+          <p>
+            For project-wide decisions, schema changes, and governance updates, the Core Steering Committee
+            seeks consensus. If consensus cannot be reached, decisions are made by a simple majority vote
+            among CSC members.
+          </p>
+
+          <h2 class="coc-heading" id="intellectual-property">
+            <a class="coc-anchor" href="#intellectual-property">Intellectual Property</a>
+          </h2>
+          <p>
+            We do not require a Contributor License Agreement (CLA). When contributing to the project, you
+            affirm that you have the right to submit the code under the project's open source license.
+          </p>
+
+          <h2 class="coc-heading" id="csc-membership-lifecycle">
+            <a class="coc-anchor" href="#csc-membership-lifecycle">CSC Membership Lifecycle</a>
+          </h2>
+          <p>We follow these rules to keep the Core Steering Committee (CSC) active and focused.</p>
+
+          <h3 class="coc-subheading" id="adding-members">
+            <a class="coc-anchor" href="#adding-members">1. Adding Members</a>
+          </h3>
+          <p>
+            We may add new members as the project grows. We typically choose people doing impactful work in
+            the Core Steering Committee.
+          </p>
+          <ul class="list">
+            <li>
+              <strong>Nomination:</strong> Any current CSC member can nominate a candidate.
+            </li>
+            <li>
+              <strong>Election:</strong> We need a two-thirds vote to approve a new member.
+            </li>
+            <li>
+              <strong>Sourcegraph Role:</strong> Since Sourcegraph financially sponsors SCIP, they can appoint
+              internal members at any time.
+            </li>
+          </ul>
+
+          <h3 class="coc-subheading" id="leaving-the-committee">
+            <a class="coc-anchor" href="#leaving-the-committee">2. Leaving the Committee</a>
+          </h3>
+          <p>
+            If you no longer have time to contribute, you should step down. You will become an Emeritus
+            member. This means you can't vote, but we will still recognize your work in the repository. We
+            might ask for your advice on complex issues in the future.
+          </p>
+
+          <h3 class="coc-subheading" id="inactivity">
+            <a class="coc-anchor" href="#inactivity">3. Inactivity</a>
+          </h3>
+          <p>
+            The CSC needs to respond quickly to avoid blocking others. If you ignore votes or reviews for six
+            months, we will automatically move you to Emeritus status.
+          </p>
+
+          <h3 class="coc-subheading" id="removal">
+            <a class="coc-anchor" href="#removal">4. Removal</a>
+          </h3>
+          <p>
+            We may remove a member to protect the project. This requires a unanimous vote from all other
+            active members. We only do this for severe Code of Conduct violations or actions that hurt the
+            protocol's stability.
+          </p>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div>© 2026 The SCIP Authors | Apache-2.0 license</div>
+        <div class="footer-links">
+          <a href="./artwork.html">Artwork</a>
+          <a href="./code-of-conduct.html">Code of conduct</a>
+          <a href="./governance.html">Governance</a>
+          <a href="https://discord.gg/w5TEzebTPk" target="_blank" rel="noopener noreferrer">Discord</a>
+          <a href="https://github.com/scip-code" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

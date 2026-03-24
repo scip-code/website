@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Complete reference for the SCIP (Semantic Code Intelligence Protocol) schema — messages, enumerations, and field descriptions generated from scip.proto."
+    />
+    <title>Protocol Reference - SCIP Code Intelligence Protocol</title>
+    <link rel="icon" href="./assets/images/scip-icon-color.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <div class="promo-bar" id="promo-bar" role="region" aria-label="Blog announcement" hidden>
+      <div class="promo-bar__inner">
+        <a class="promo-bar__link" href="#" target="_blank" rel="noopener noreferrer">
+          <span class="promo-bar__label">New</span>
+          <span class="promo-bar__title">The Future of SCIP</span>
+          <span class="promo-bar__cta">Read post</span>
+        </a>
+        <button type="button" class="promo-bar__close" aria-label="Dismiss announcement">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path
+              d="M4 4l8 8M12 4l-8 8"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="page">
+      <header class="nav">
+        <div class="nav-title">
+          <a href="./index.html">
+            <img class="logo" src="./assets/images/scip-logo-color.svg" alt="SCIP" />
+          </a>
+        </div>
+        <nav class="nav-links">
+          <a href="./docs.html">Docs</a>
+          <a href="./governance.html">Governance</a>
+          <a href="https://discord.gg/w5TEzebTPk" target="_blank" rel="noopener noreferrer">Discord</a>
+          <a href="https://github.com/scip-code/scip" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </nav>
+      </header>
+
+      <section class="hero" id="top">
+        <div>
+          <span class="pill">Protocol Reference</span>
+          <h1 class="hero-title">SCIP Protocol Reference</h1>
+          <p class="hero-subtitle">
+            Complete schema reference for the Semantic Code Intelligence Protocol —
+            messages, enumerations, and field descriptions generated from
+            <a class="list-link" href="https://github.com/scip-code/scip/blob/main/scip.proto" target="_blank" rel="noopener noreferrer">scip.proto</a>.
+          </p>
+        </div>
+      </section>
+
+      <!-- Table of contents -->
+      <section class="section docs-section">
+        <div class="card docs-toc">
+          <p class="docs-toc-title">Contents</p>
+          <div class="docs-toc-cols">
+            <a href="#descriptor">Descriptor</a>
+            <a href="#diagnostic">Diagnostic</a>
+            <a href="#document">Document</a>
+            <a href="#index">Index</a>
+            <a href="#metadata">Metadata</a>
+            <a href="#occurrence">Occurrence</a>
+            <a href="#package">Package</a>
+            <a href="#relationship">Relationship</a>
+            <a href="#symbol">Symbol</a>
+            <a href="#symbol-information">SymbolInformation</a>
+            <a href="#tool-info">ToolInfo</a>
+            <a href="#diagnostic-tag">DiagnosticTag</a>
+            <a href="#language">Language</a>
+            <a href="#position-encoding">PositionEncoding</a>
+            <a href="#protocol-version">ProtocolVersion</a>
+            <a href="#severity">Severity</a>
+            <a href="#symbol-role">SymbolRole</a>
+            <a href="#syntax-kind">SyntaxKind</a>
+            <a href="#text-encoding">TextEncoding</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Messages -->
+      <section class="section docs-section">
+        <p class="docs-section-label">Messages</p>
+
+        <!-- Descriptor -->
+        <div class="docs-entry" id="descriptor">
+          <h2 class="docs-entry-heading">
+            <a class="docs-entry-anchor" href="#descriptor">Descriptor</a>
+            <span class="docs-entry-kind">message</span>
+          </h2>
+          <div class="docs-table-wrap">
+            <table class="docs-table">
+              <thead>
+                <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>name</td><td>string</td><td></td></tr>
+                <tr><td>disambiguator</td><td>string</td><td></td></tr>
+                <tr><td>suffix</td><td>Suffix</td><td>NOTE: If you add new fields here, make sure to update the <code>prepareSlot()</code> function responsible for parsing symbols.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="docs-sub-entry" id="descriptor-suffix">
+            <h3 class="docs-sub-entry-heading">Suffix (enum)</h3>
+            <div class="docs-table-wrap">
+              <table class="docs-table docs-table--enum">
+                <thead>
+                  <tr><th>Number</th><th>Name</th><th>Description</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>0</td><td>UnspecifiedSuffix</td><td></td></tr>
+                  <tr><td>1</td><td>Namespace</td><td>Unit of code abstraction and/or namespacing. Corresponds to a package in Go and JVM languages.</td></tr>
+                  <tr><td>1</td><td>Package</td><td>Deprecated — use Namespace instead.</td></tr>
+                  <tr><td>2</td><td>Type</td><td></td></tr>
+                  <tr><td>3</td><td>Term</td><td></td></tr>
+                  <tr><td>4</td><td>Method</td><td></td></tr>
+                  <tr><td>5</td><td>TypeParameter</td><td></td></tr>
+                  <tr><td>6</td><td>Parameter</td><td></td></tr>
+                  <tr><td>7</td><td>Meta</td><td>Can be used for any purpose.</td></tr>
+                  <tr><td>8</td><td>Local</td><td></td></tr>
+                  <tr><td>9</td><td>Macro</td><td></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Diagnostic -->
+        <div class="docs-entry" id="diagnostic">
+          <h2 class="docs-entry-heading">
+            <a class="docs-entry-anchor" href="#diagnostic">Diagnostic</a>
+            <span class="docs-entry-kind">message</span>
+          </h2>
+          <p>Represents a diagnostic, such as a compiler error or warning, which should be reported for a document.</p>
+          <div class="docs-table-wrap">
+            <table class="docs-table">
+              <thead>
+                <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>severity</td><td>Severity</td><td>Should this diagnostic be reported as an error, warning, info, or hint?</td></tr>
+                <tr><td>code</td><td>string</td><td>(optional) Code of this diagnostic, which might appear in the user interface.</td></tr>
+                <tr><td>message</td><td>string</td><td>Message of this diagnostic.</td></tr>
+                <tr><td>source</td><td>string</td><td>(optional) Human-readable string describing the source of this diagnostic, e.g. <code>typescript</code> or <code>super lint</code>.</td></tr>
+                <tr><td>tags</td><td>repeated DiagnosticTag</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Document -->
+        <div class="docs-entry" id="document">
+          <h2 class="docs-entry-heading">
+            <a class="docs-entry-anchor" href="#document">Document</a>
+            <span class="docs-entry-kind">message</span>
+          </h2>
+          <p>Document defines the metadata about a source file on disk.</p>
+          <div class="docs-table-wrap">
+            <table class="docs-table">
+              <thead>
+                <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>language</td><td>string</td><td>The string ID for the programming language this file is written in. The <code>Language</code> enum contains the names of most common programming languages. This field is typed as a string to permit any programming language, including ones not specified by the <code>Language</code> enum.</td></tr>
+                <tr><td>relative_path</td><td>string</td><td>(Required) Unique path to the text document. Must be relative to <code>Metadata.project_root</code>, must not begin with <code>/</code>, must use <code>/</code> as separator, and must be canonical.</td></tr>
+                <tr><td>occurrences</td><td>repeated Occurrence</td><td>Occurrences that appear in this file.</td></tr>
+                <tr><td>symbols</td><td>repeated SymbolInformation</td><td>Symbols that are "defined" within this document, including symbols with no definition that are defined by another symbol (see <code>Relationship.is_definition</code>).</td></tr>
+                <tr><td>text</td><td>string</td><td>(optional) Text contents of this document. Indexers are not expected to include the text by default.</td></tr>
+                <tr><td>position_encoding</td><td>PositionEncoding</td><td>Specifies the encoding used for source ranges in this document.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Index -->
+        <div class="docs-entry" id="index">
+          <h2 class="docs-entry-heading">
+            <a class="docs-entry-anchor" href="#index">Index</a>
+            <span class="docs-entry-kind">message</span>
+          </h2>
+          <p>
+            Index represents a complete SCIP index for a workspace rooted at a single directory.
+            An Index message payload can have a large memory footprint; it is recommended to emit and
+            consume an Index payload one field value at a time. The <code>metadata</code> field must
+            appear first in the stream and only once.
+          </p>
+          <div class="docs-table-wrap">
+            <table class="docs-table">
+              <thead>
+                <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>metadata</td><td>Metadata</td><td>Metadata about this index.</td></tr>
+                <tr><td>documents</td><td>repeated Document</td><td>Documents that belong to this index.</td></tr>
+                <tr><td>external_symbols</td><td>repeated SymbolInformation</td><td>(optional) Symbols referenced from this index but defined in an external package. Leave empty if the external package will be indexed separately.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Metadata -->
+        <div class="docs-entry" id="metadata">
+          <h2 class="docs-entry-heading">
+            <a class="docs-entry-anchor" href="#metadata">Metadata</a>
+            <span class="docs-entry-kind">message</span>
+          </h2>
+          <div class="docs-table-wrap">
+            <table class="docs-table">
+              <thead>
+                <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>version</td><td>ProtocolVersion</td><td>Which version of this protocol was used to generate this index?</td></tr>
+                <tr><td>tool_info</td><td>ToolInfo</td><td>Information about the tool that produced this index.</td></tr>
+                <tr><td>project_root</td><td>string</td><td>URI-encoded absolute path to the root directory of this index. All documents must appear in a subdirectory of this root.</td></tr>
+                <tr><td>text_document_encoding</td><td>TextEncoding</td><td>Text encoding of the source files on disk referenced from <code>Document.relative_path</code>. Unrelated to <code>Document.text</code>, which is always UTF-8.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Occurrence -->
+        <div class="docs-entry" id="occurrence">
+          <h2 class="docs-entry-heading">
+            <a class="docs-entry-anchor" href="#occurrence">Occurrence</a>
+            <span class="docs-entry-kind">message</span>
+          </h2>
+          <p>
+            Occurrence associates a source position with a symbol and/or highlighting information.
+            Where possible, indexers should bundle logically related information across occurrences
+            into a single occurrence to reduce payload sizes.
+          </p>
+          <div class="docs-table-wrap">
+            <table class="docs-table">
+              <thead>
+                <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>range</td><td>repeated int32</td><td>
+                  Half-open <code>[start, end)</code> range. Must be exactly 3 or 4 elements:
+                  <code>[startLine, startCharacter, endCharacter]</code> (same line) or
+                  <code>[startLine, startCharacter, endLine, endCharacter]</code>.
+                  Line numbers and characters are always 0-based.
+                </td></tr>
+                <tr><td>symbol</td><td>string</td><td>(optional) The symbol that appears at this position. See <code>SymbolInformation.symbol</code> for formatting.</td></tr>
+                <tr><td>symbol_roles</td><td>int32</td><td>(optional) Bitset of <code>SymbolRole</code>s in this occurrence.</td></tr>
+                <tr><td>override_documentation</td><td>repeated string</td><td>(optional) CommonMark-formatted documentation for this specific range, overriding <code>Symbol.documentation</code>. Useful for generic functions or typed assignments.</td></tr>
+                <tr><td>syntax_kind</td><td>SyntaxKind</td><td>(optional) Syntax highlighting class for this range.</td></tr>
+                <tr><td>diagnostics</td><td>repeated Diagnostic</td><td>(optional) Diagnostics reported for this specific range.</td></tr>
+                <tr><td>enclosing_range</td><td>repeated int32</td><td>(optional) Half-open source range of the nearest non-trivial enclosing AST node. Used for call hierarchies, symbol outlines, expand selection, and hover highlight ranges.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Package -->
+        <div class="docs-entry" id="package">
+          <h2 class="docs-entry-heading">
+            <a class="docs-entry-anchor" href="#package">Package</a>
+            <span class="docs-entry-kind">message</span>
+          </h2>
+          <p>Unit of packaging and distribution. Corresponds to a module in Go and JVM languages.</p>
+          <div class="docs-table-wrap">
+            <table class="docs-table">
+              <thead>
+                <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>manager</td><td>string</td><td></td></tr>
+                <tr><td>name</td><td>string</td><td></td></tr>
+                <tr><td>version</td><td>string</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Relationship -->
+        <div class="docs-entry" id="relationship">
+          <h2 class="docs-entry-heading">
+            <a class="docs-entry-anchor" href="#relationship">Relationship</a>
+            <span class="docs-entry-kind">message</span>
+          </h2>
+          <div class="docs-table-wrap">
+            <table class="docs-table">
+              <thead>
+                <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>symbol</td><td>string</td><td></td></tr>
+                <tr><td>is_reference</td><td>bool</td><td>When resolving "Find references", controls which other symbols should be included. For example, an implementation of an interface method should also surface references to the interface method.</td></tr>
+                <tr><td>is_implementation</td><td>bool</td><td>Similar to <code>is_reference</code> but for "Find implementations". Often both <code>is_implementation</code> and <code>is_reference</code> are true, but not always.</td></tr>
+                <tr><td>is_type_definition</td><td>bool</td><td>Similar to <code>is_reference</code> but for "Go to type definition".</td></tr>
+                <tr><td>is_definition</td><td>bool</td><td>Overrides "Go to definition" and "Find references" behavior for symbols without their own definition or with multiple potential definitions.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Symbol -->
+        <div class="docs-entry" id="symbol">
+          <h2 class="docs-entry-heading">
+            <a class="docs-entry-anchor" href="#symbol">Symbol</a>
+            <span class="docs-entry-kind">message</span>
+          </h2>
+          <p>
+            A Symbol identifies a class, method, or local variable — similar to a URI.
+            It has a standardized string representation using the grammar below.
+            The list of descriptors should form a fully qualified name unique across the package.
+            Local symbols must only be used for entities local to a Document.
+          </p>
+          <div class="docs-note">
+            <strong>Grammar</strong>
+            <pre>
+&lt;symbol&gt;    ::= &lt;scheme&gt; ' ' &lt;package&gt; ' ' (&lt;descriptor&gt;)+ | 'local ' &lt;local-id&gt;
+&lt;package&gt;   ::= &lt;manager&gt; ' ' &lt;package-name&gt; ' ' &lt;version&gt;
+&lt;descriptor&gt; ::= &lt;namespace&gt; | &lt;type&gt; | &lt;term&gt; | &lt;method&gt; | &lt;type-parameter&gt; | &lt;parameter&gt; | &lt;meta&gt; | &lt;macro&gt;
+&lt;namespace&gt; ::= &lt;name&gt; '/'
+&lt;type&gt;      ::= &lt;name&gt; '#'
+&lt;term&gt;      ::= &lt;name&gt; '.'
+&lt;method&gt;    ::= &lt;name&gt; '(' (&lt;disambiguator&gt;)? ').'</pre>
+          </div>
+          <div class="docs-table-wrap" style="margin-top:16px">
+            <table class="docs-table">
+              <thead>
+                <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>scheme</td><td>string</td><td></td></tr>
+                <tr><td>package</td><td>Package</td><td></td></tr>
+                <tr><td>descriptors</td><td>repeated Descriptor</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- SymbolInformation -->
+        <div class="docs-entry" id="symbol-information">
+          <h2 class="docs-entry-heading">
+            <a class="docs-entry-anchor" href="#symbol-information">SymbolInformation</a>
+            <span class="docs-entry-kind">message</span>
+          </h2>
+          <p>SymbolInformation defines metadata about a symbol, such as its docstring or defining package.</p>
+          <div class="docs-table-wrap">
+            <table class="docs-table">
+              <thead>
+                <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>symbol</td><td>string</td><td>Identifier of this symbol, referenced from <code>Occurrence.symbol</code>. Must be formatted according to the <code>Symbol</code> grammar.</td></tr>
+                <tr><td>documentation</td><td>repeated string</td><td>(optional, strongly recommended) Markdown-formatted documentation. Use <code>signature_documentation</code> for signatures; this field should contain only prose docstrings.</td></tr>
+                <tr><td>relationships</td><td>repeated Relationship</td><td>(optional) Relationships to other symbols (e.g., implements, type definition).</td></tr>
+                <tr><td>kind</td><td>Kind</td><td>The kind of this symbol. Prefer this over <code>SymbolDescriptor.Suffix</code> for determining class vs. method etc.</td></tr>
+                <tr><td>display_name</td><td>string</td><td>(optional) The name as it should appear to the user. The <code>symbol</code> field is not always a reliable source due to case-insensitivity, special characters, or local symbols.</td></tr>
+                <tr><td>signature_documentation</td><td>Document</td><td>(optional) The signature as displayed in API docs or hover tooltips, e.g. <code>void add(int a, int b)</code>.</td></tr>
+                <tr><td>enclosing_symbol</td><td>string</td><td>(optional) The enclosing symbol for local symbols. Allows local symbols to appear in symbol hierarchies for API documentation.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="docs-sub-entry" id="symbol-information-kind">
+            <h3 class="docs-sub-entry-heading">Kind (enum)</h3>
+            <p style="font-size:14px;color:rgba(6,0,0,.6);margin:0 0 12px">Fine-grained category of a symbol. More specific than <code>Suffix</code>: if two symbols share a Kind they share a Suffix, but different Suffixes imply different Kinds.</p>
+            <div class="docs-table-wrap">
+              <table class="docs-table docs-table--enum">
+                <thead>
+                  <tr><th>Number</th><th>Name</th><th>Description</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>0</td><td>UnspecifiedKind</td><td></td></tr>
+                  <tr><td>66</td><td>AbstractMethod</td><td>A method which may or may not have a body. For Java, Kotlin etc.</td></tr>
+                  <tr><td>72</td><td>Accessor</td><td>For Ruby's <code>attr_accessor</code></td></tr>
+                  <tr><td>1</td><td>Array</td><td></td></tr>
+                  <tr><td>2</td><td>Assertion</td><td>For Alloy</td></tr>
+                  <tr><td>3</td><td>AssociatedType</td><td></td></tr>
+                  <tr><td>4</td><td>Attribute</td><td>For C++</td></tr>
+                  <tr><td>5</td><td>Axiom</td><td>For Lean</td></tr>
+                  <tr><td>6</td><td>Boolean</td><td></td></tr>
+                  <tr><td>7</td><td>Class</td><td></td></tr>
+                  <tr><td>86</td><td>Concept</td><td>For C++</td></tr>
+                  <tr><td>8</td><td>Constant</td><td></td></tr>
+                  <tr><td>9</td><td>Constructor</td><td></td></tr>
+                  <tr><td>62</td><td>Contract</td><td>For Solidity</td></tr>
+                  <tr><td>10</td><td>DataFamily</td><td>For Haskell</td></tr>
+                  <tr><td>73</td><td>Delegate</td><td>For C# and F#</td></tr>
+                  <tr><td>11</td><td>Enum</td><td></td></tr>
+                  <tr><td>12</td><td>EnumMember</td><td></td></tr>
+                  <tr><td>63</td><td>Error</td><td></td></tr>
+                  <tr><td>13</td><td>Event</td><td></td></tr>
+                  <tr><td>84</td><td>Extension</td><td>For Dart</td></tr>
+                  <tr><td>14</td><td>Fact</td><td>For Alloy</td></tr>
+                  <tr><td>15</td><td>Field</td><td></td></tr>
+                  <tr><td>16</td><td>File</td><td></td></tr>
+                  <tr><td>17</td><td>Function</td><td></td></tr>
+                  <tr><td>18</td><td>Getter</td><td>For <code>get</code> in Swift, <code>attr_reader</code> in Ruby</td></tr>
+                  <tr><td>19</td><td>Grammar</td><td>For Raku</td></tr>
+                  <tr><td>20</td><td>Instance</td><td>For Purescript and Lean</td></tr>
+                  <tr><td>21</td><td>Interface</td><td></td></tr>
+                  <tr><td>22</td><td>Key</td><td></td></tr>
+                  <tr><td>23</td><td>Lang</td><td>For Racket</td></tr>
+                  <tr><td>24</td><td>Lemma</td><td>For Lean</td></tr>
+                  <tr><td>64</td><td>Library</td><td>For Solidity</td></tr>
+                  <tr><td>25</td><td>Macro</td><td></td></tr>
+                  <tr><td>26</td><td>Method</td><td></td></tr>
+                  <tr><td>74</td><td>MethodAlias</td><td>For Ruby</td></tr>
+                  <tr><td>27</td><td>MethodReceiver</td><td>Analogous to <code>ThisParameter</code>/<code>SelfParameter</code> for Go, where the receiver has no conventional name.</td></tr>
+                  <tr><td>67</td><td>MethodSpecification</td><td>Analogous to <code>AbstractMethod</code> for Go.</td></tr>
+                  <tr><td>28</td><td>Message</td><td>For Protobuf</td></tr>
+                  <tr><td>85</td><td>Mixin</td><td>For Dart</td></tr>
+                  <tr><td>65</td><td>Modifier</td><td>For Solidity</td></tr>
+                  <tr><td>29</td><td>Module</td><td></td></tr>
+                  <tr><td>30</td><td>Namespace</td><td></td></tr>
+                  <tr><td>31</td><td>Null</td><td></td></tr>
+                  <tr><td>32</td><td>Number</td><td></td></tr>
+                  <tr><td>33</td><td>Object</td><td></td></tr>
+                  <tr><td>34</td><td>Operator</td><td></td></tr>
+                  <tr><td>35</td><td>Package</td><td></td></tr>
+                  <tr><td>36</td><td>PackageObject</td><td></td></tr>
+                  <tr><td>37</td><td>Parameter</td><td></td></tr>
+                  <tr><td>38</td><td>ParameterLabel</td><td></td></tr>
+                  <tr><td>39</td><td>Pattern</td><td>For Haskell's PatternSynonyms</td></tr>
+                  <tr><td>40</td><td>Predicate</td><td>For Alloy</td></tr>
+                  <tr><td>41</td><td>Property</td><td></td></tr>
+                  <tr><td>42</td><td>Protocol</td><td>Analogous to <code>Trait</code>/<code>TypeClass</code> for Swift and Objective-C</td></tr>
+                  <tr><td>68</td><td>ProtocolMethod</td><td>Analogous to <code>AbstractMethod</code> for Swift and Objective-C.</td></tr>
+                  <tr><td>69</td><td>PureVirtualMethod</td><td>Analogous to <code>AbstractMethod</code> for C++.</td></tr>
+                  <tr><td>43</td><td>Quasiquoter</td><td>For Haskell</td></tr>
+                  <tr><td>44</td><td>SelfParameter</td><td><code>self</code> in Python, Rust, Swift etc.</td></tr>
+                  <tr><td>45</td><td>Setter</td><td>For <code>set</code> in Swift, <code>attr_writer</code> in Ruby</td></tr>
+                  <tr><td>46</td><td>Signature</td><td>For Alloy, analogous to <code>Struct</code></td></tr>
+                  <tr><td>75</td><td>SingletonClass</td><td>For Ruby</td></tr>
+                  <tr><td>76</td><td>SingletonMethod</td><td>Analogous to <code>StaticMethod</code> for Ruby.</td></tr>
+                  <tr><td>77</td><td>StaticDataMember</td><td>Analogous to <code>StaticField</code> for C++</td></tr>
+                  <tr><td>78</td><td>StaticEvent</td><td>For C#</td></tr>
+                  <tr><td>79</td><td>StaticField</td><td>For C#</td></tr>
+                  <tr><td>80</td><td>StaticMethod</td><td>For Java, C#, C++ etc.</td></tr>
+                  <tr><td>81</td><td>StaticProperty</td><td>For C#, TypeScript etc.</td></tr>
+                  <tr><td>82</td><td>StaticVariable</td><td>For C, C++</td></tr>
+                  <tr><td>48</td><td>String</td><td></td></tr>
+                  <tr><td>49</td><td>Struct</td><td></td></tr>
+                  <tr><td>47</td><td>Subscript</td><td>For Swift</td></tr>
+                  <tr><td>50</td><td>Tactic</td><td>For Lean</td></tr>
+                  <tr><td>51</td><td>Theorem</td><td>For Lean</td></tr>
+                  <tr><td>52</td><td>ThisParameter</td><td><code>this</code> in JavaScript, C++, Java etc.</td></tr>
+                  <tr><td>53</td><td>Trait</td><td>Analogous to <code>Protocol</code>/<code>TypeClass</code> for Rust, Scala etc.</td></tr>
+                  <tr><td>70</td><td>TraitMethod</td><td>Analogous to <code>AbstractMethod</code> for Rust, Scala etc.</td></tr>
+                  <tr><td>54</td><td>Type</td><td>Data type definition for languages like OCaml which use <code>type</code> rather than separate keywords like <code>struct</code> and <code>enum</code>.</td></tr>
+                  <tr><td>55</td><td>TypeAlias</td><td></td></tr>
+                  <tr><td>56</td><td>TypeClass</td><td>Analogous to <code>Trait</code>/<code>Protocol</code> for Haskell, Purescript etc.</td></tr>
+                  <tr><td>71</td><td>TypeClassMethod</td><td>Analogous to <code>AbstractMethod</code> for Haskell, Purescript etc.</td></tr>
+                  <tr><td>57</td><td>TypeFamily</td><td>For Haskell</td></tr>
+                  <tr><td>58</td><td>TypeParameter</td><td></td></tr>
+                  <tr><td>59</td><td>Union</td><td>For C, C++, Cap'n Proto</td></tr>
+                  <tr><td>60</td><td>Value</td><td></td></tr>
+                  <tr><td>61</td><td>Variable</td><td></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ToolInfo -->
+        <div class="docs-entry" id="tool-info">
+          <h2 class="docs-entry-heading">
+            <a class="docs-entry-anchor" href="#tool-info">ToolInfo</a>
+            <span class="docs-entry-kind">message</span>
+          </h2>
+          <div class="docs-table-wrap">
+            <table class="docs-table">
+              <thead>
+                <tr><th>Name</th><th>Type</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>name</td><td>string</td><td>Name of the indexer that produced this index.</td></tr>
+                <tr><td>version</td><td>string</td><td>Version of the indexer that produced this index.</td></tr>
+                <tr><td>arguments</td><td>repeated string</td><td>Command-line arguments used to invoke this indexer.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Enumerations -->
+      <section class="section docs-section">
+        <p class="docs-section-label">Enumerations</p>
+
+        <!-- DiagnosticTag -->
+        <div class="docs-entry" id="diagnostic-tag">
+          <h2 class="docs-entry-heading">
+            <a class="docs-entry-anchor" href="#diagnostic-tag">DiagnosticTag</a>
+            <span class="docs-entry-kind">enum</span>
+          </h2>
+          <div class="docs-table-wrap">
+            <table class="docs-table docs-table--enum">
+              <thead>
+                <tr><th>Number</th><th>Name</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>0</td><td>UnspecifiedDiagnosticTag</td><td></td></tr>
+                <tr><td>1</td><td>Unnecessary</td><td></td></tr>
+                <tr><td>2</td><td>Deprecated</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Language -->
+        <div class="docs-entry" id="language">
+          <h2 class="docs-entry-heading">
+            <a class="docs-entry-anchor" href="#language">Language</a>
+            <span class="docs-entry-kind">enum</span>
+          </h2>
+          <p>
+            Standardises names of common programming languages for the <code>Document.language</code> field.
+            The primary purpose is to prevent a single language from having multiple string representations
+            (e.g. C++ uses <code>CPP</code> — other representations are incompatible).
+          </p>
+          <div class="docs-table-wrap">
+            <table class="docs-table docs-table--enum">
+              <thead>
+                <tr><th>Number</th><th>Name</th><th>Notes</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>0</td><td>UnspecifiedLanguage</td><td></td></tr>
+                <tr><td>60</td><td>ABAP</td><td></td></tr>
+                <tr><td>96</td><td>Apex</td><td></td></tr>
+                <tr><td>49</td><td>APL</td><td></td></tr>
+                <tr><td>39</td><td>Ada</td><td></td></tr>
+                <tr><td>45</td><td>Agda</td><td></td></tr>
+                <tr><td>86</td><td>AsciiDoc</td><td></td></tr>
+                <tr><td>58</td><td>Assembly</td><td></td></tr>
+                <tr><td>66</td><td>Awk</td><td></td></tr>
+                <tr><td>68</td><td>Bat</td><td></td></tr>
+                <tr><td>81</td><td>BibTeX</td><td></td></tr>
+                <tr><td>34</td><td>C</td><td></td></tr>
+                <tr><td>59</td><td>COBOL</td><td></td></tr>
+                <tr><td>35</td><td>CPP</td><td>C++ — name chosen for LSP consistency</td></tr>
+                <tr><td>26</td><td>CSS</td><td></td></tr>
+                <tr><td>1</td><td>CSharp</td><td></td></tr>
+                <tr><td>8</td><td>Clojure</td><td></td></tr>
+                <tr><td>21</td><td>Coffeescript</td><td></td></tr>
+                <tr><td>9</td><td>CommonLisp</td><td></td></tr>
+                <tr><td>47</td><td>Coq</td><td></td></tr>
+                <tr><td>97</td><td>CUDA</td><td></td></tr>
+                <tr><td>3</td><td>Dart</td><td></td></tr>
+                <tr><td>57</td><td>Delphi</td><td></td></tr>
+                <tr><td>88</td><td>Diff</td><td></td></tr>
+                <tr><td>80</td><td>Dockerfile</td><td></td></tr>
+                <tr><td>50</td><td>Dyalog</td><td></td></tr>
+                <tr><td>17</td><td>Elixir</td><td></td></tr>
+                <tr><td>18</td><td>Erlang</td><td></td></tr>
+                <tr><td>42</td><td>FSharp</td><td></td></tr>
+                <tr><td>65</td><td>Fish</td><td></td></tr>
+                <tr><td>24</td><td>Flow</td><td></td></tr>
+                <tr><td>56</td><td>Fortran</td><td></td></tr>
+                <tr><td>91</td><td>Git_Commit</td><td></td></tr>
+                <tr><td>89</td><td>Git_Config</td><td></td></tr>
+                <tr><td>92</td><td>Git_Rebase</td><td></td></tr>
+                <tr><td>33</td><td>Go</td><td></td></tr>
+                <tr><td>98</td><td>GraphQL</td><td></td></tr>
+                <tr><td>7</td><td>Groovy</td><td></td></tr>
+                <tr><td>30</td><td>HTML</td><td></td></tr>
+                <tr><td>20</td><td>Hack</td><td></td></tr>
+                <tr><td>90</td><td>Handlebars</td><td></td></tr>
+                <tr><td>44</td><td>Haskell</td><td></td></tr>
+                <tr><td>46</td><td>Idris</td><td></td></tr>
+                <tr><td>72</td><td>Ini</td><td></td></tr>
+                <tr><td>51</td><td>J</td><td></td></tr>
+                <tr><td>75</td><td>JSON</td><td></td></tr>
+                <tr><td>6</td><td>Java</td><td></td></tr>
+                <tr><td>22</td><td>JavaScript</td><td></td></tr>
+                <tr><td>93</td><td>JavaScriptReact</td><td></td></tr>
+                <tr><td>76</td><td>Jsonnet</td><td></td></tr>
+                <tr><td>55</td><td>Julia</td><td></td></tr>
+                <tr><td>109</td><td>Justfile</td><td></td></tr>
+                <tr><td>4</td><td>Kotlin</td><td></td></tr>
+                <tr><td>83</td><td>LaTeX</td><td></td></tr>
+                <tr><td>48</td><td>Lean</td><td></td></tr>
+                <tr><td>27</td><td>Less</td><td></td></tr>
+                <tr><td>12</td><td>Lua</td><td></td></tr>
+                <tr><td>108</td><td>Luau</td><td></td></tr>
+                <tr><td>79</td><td>Makefile</td><td></td></tr>
+                <tr><td>84</td><td>Markdown</td><td></td></tr>
+                <tr><td>52</td><td>Matlab</td><td></td></tr>
+                <tr><td>110</td><td>Nickel</td><td><a class="list-link" href="https://nickel-lang.org/" target="_blank" rel="noopener noreferrer">nickel-lang.org</a></td></tr>
+                <tr><td>77</td><td>Nix</td><td></td></tr>
+                <tr><td>41</td><td>OCaml</td><td></td></tr>
+                <tr><td>36</td><td>Objective_C</td><td></td></tr>
+                <tr><td>37</td><td>Objective_CPP</td><td></td></tr>
+                <tr><td>99</td><td>Pascal</td><td></td></tr>
+                <tr><td>19</td><td>PHP</td><td></td></tr>
+                <tr><td>70</td><td>PLSQL</td><td></td></tr>
+                <tr><td>13</td><td>Perl</td><td></td></tr>
+                <tr><td>67</td><td>PowerShell</td><td></td></tr>
+                <tr><td>71</td><td>Prolog</td><td></td></tr>
+                <tr><td>100</td><td>Protobuf</td><td></td></tr>
+                <tr><td>15</td><td>Python</td><td></td></tr>
+                <tr><td>54</td><td>R</td><td></td></tr>
+                <tr><td>11</td><td>Racket</td><td></td></tr>
+                <tr><td>14</td><td>Raku</td><td></td></tr>
+                <tr><td>62</td><td>Razor</td><td></td></tr>
+                <tr><td>102</td><td>Repro</td><td>Internal language for testing SCIP</td></tr>
+                <tr><td>85</td><td>ReST</td><td></td></tr>
+                <tr><td>16</td><td>Ruby</td><td></td></tr>
+                <tr><td>40</td><td>Rust</td><td></td></tr>
+                <tr><td>61</td><td>SAS</td><td></td></tr>
+                <tr><td>29</td><td>SCSS</td><td></td></tr>
+                <tr><td>43</td><td>SML</td><td></td></tr>
+                <tr><td>69</td><td>SQL</td><td></td></tr>
+                <tr><td>28</td><td>Sass</td><td></td></tr>
+                <tr><td>5</td><td>Scala</td><td></td></tr>
+                <tr><td>10</td><td>Scheme</td><td></td></tr>
+                <tr><td>64</td><td>ShellScript</td><td>Bash</td></tr>
+                <tr><td>78</td><td>Skylark</td><td></td></tr>
+                <tr><td>107</td><td>Slang</td><td></td></tr>
+                <tr><td>95</td><td>Solidity</td><td></td></tr>
+                <tr><td>106</td><td>Svelte</td><td></td></tr>
+                <tr><td>2</td><td>Swift</td><td></td></tr>
+                <tr><td>101</td><td>Tcl</td><td></td></tr>
+                <tr><td>73</td><td>TOML</td><td></td></tr>
+                <tr><td>82</td><td>TeX</td><td></td></tr>
+                <tr><td>103</td><td>Thrift</td><td></td></tr>
+                <tr><td>23</td><td>TypeScript</td><td></td></tr>
+                <tr><td>94</td><td>TypeScriptReact</td><td></td></tr>
+                <tr><td>104</td><td>Verilog</td><td></td></tr>
+                <tr><td>105</td><td>VHDL</td><td></td></tr>
+                <tr><td>63</td><td>VisualBasic</td><td></td></tr>
+                <tr><td>25</td><td>Vue</td><td></td></tr>
+                <tr><td>53</td><td>Wolfram</td><td></td></tr>
+                <tr><td>31</td><td>XML</td><td></td></tr>
+                <tr><td>32</td><td>XSL</td><td></td></tr>
+                <tr><td>74</td><td>YAML</td><td></td></tr>
+                <tr><td>38</td><td>Zig</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- PositionEncoding -->
+        <div class="docs-entry" id="position-encoding">
+          <h2 class="docs-entry-heading">
+            <a class="docs-entry-anchor" href="#position-encoding">PositionEncoding</a>
+            <span class="docs-entry-kind">enum</span>
+          </h2>
+          <p>Encoding used to interpret the <code>character</code> value in source ranges.</p>
+          <div class="docs-table-wrap">
+            <table class="docs-table docs-table--enum">
+              <thead>
+                <tr><th>Number</th><th>Name</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>0</td><td>UnspecifiedPositionEncoding</td><td>Default. Should not be used by new indexers so that consumers can process the index without ambiguity.</td></tr>
+                <tr><td>1</td><td>UTF8CodeUnitOffsetFromLineStart</td><td>Offset in UTF-8 bytes. Use for indexers in Go, Rust, or C++.</td></tr>
+                <tr><td>2</td><td>UTF16CodeUnitOffsetFromLineStart</td><td>Offset in UTF-16 code units (2 bytes each). Use for indexers in JVM/.NET languages or JavaScript/TypeScript.</td></tr>
+                <tr><td>3</td><td>UTF32CodeUnitOffsetFromLineStart</td><td>Offset in UTF-32 code units (4 bytes each). Use for indexers in Python.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ProtocolVersion -->
+        <div class="docs-entry" id="protocol-version">
+          <h2 class="docs-entry-heading">
+            <a class="docs-entry-anchor" href="#protocol-version">ProtocolVersion</a>
+            <span class="docs-entry-kind">enum</span>
+          </h2>
+          <div class="docs-table-wrap">
+            <table class="docs-table docs-table--enum">
+              <thead>
+                <tr><th>Number</th><th>Name</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>0</td><td>UnspecifiedProtocolVersion</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Severity -->
+        <div class="docs-entry" id="severity">
+          <h2 class="docs-entry-heading">
+            <a class="docs-entry-anchor" href="#severity">Severity</a>
+            <span class="docs-entry-kind">enum</span>
+          </h2>
+          <div class="docs-table-wrap">
+            <table class="docs-table docs-table--enum">
+              <thead>
+                <tr><th>Number</th><th>Name</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>0</td><td>UnspecifiedSeverity</td><td></td></tr>
+                <tr><td>1</td><td>Error</td><td></td></tr>
+                <tr><td>2</td><td>Warning</td><td></td></tr>
+                <tr><td>3</td><td>Information</td><td></td></tr>
+                <tr><td>4</td><td>Hint</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- SymbolRole -->
+        <div class="docs-entry" id="symbol-role">
+          <h2 class="docs-entry-heading">
+            <a class="docs-entry-anchor" href="#symbol-role">SymbolRole</a>
+            <span class="docs-entry-kind">enum</span>
+          </h2>
+          <p>
+            Declares what "role" a symbol has in an occurrence, encoded as a bitset.
+            To test a role: <code>(role &amp; SymbolRole.Import) &gt; 0</code>.
+          </p>
+          <div class="docs-table-wrap">
+            <table class="docs-table docs-table--enum">
+              <thead>
+                <tr><th>Number</th><th>Name</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>0</td><td>UnspecifiedSymbolRole</td><td>Exists only to avoid a Protobuf code generator error.</td></tr>
+                <tr><td>1</td><td>Definition</td><td>Is the symbol defined here? If not, this is a reference.</td></tr>
+                <tr><td>2</td><td>Import</td><td>Is the symbol imported here?</td></tr>
+                <tr><td>4</td><td>WriteAccess</td><td>Is the symbol written here?</td></tr>
+                <tr><td>8</td><td>ReadAccess</td><td>Is the symbol read here?</td></tr>
+                <tr><td>16</td><td>Generated</td><td>Is the symbol in generated code?</td></tr>
+                <tr><td>32</td><td>Test</td><td>Is the symbol in test code?</td></tr>
+                <tr><td>64</td><td>ForwardDefinition</td><td>Is this a signature for a symbol defined elsewhere? Applies to forward declarations in C/C++/Objective-C and <code>val</code> declarations in SML/OCaml interface files.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- SyntaxKind -->
+        <div class="docs-entry" id="syntax-kind">
+          <h2 class="docs-entry-heading">
+            <a class="docs-entry-anchor" href="#syntax-kind">SyntaxKind</a>
+            <span class="docs-entry-kind">enum</span>
+          </h2>
+          <div class="docs-table-wrap">
+            <table class="docs-table docs-table--enum">
+              <thead>
+                <tr><th>Number</th><th>Name</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>0</td><td>UnspecifiedSyntaxKind</td><td></td></tr>
+                <tr><td>1</td><td>Comment</td><td>Comment, including comment markers and text</td></tr>
+                <tr><td>2</td><td>PunctuationDelimiter</td><td><code>;</code> <code>.</code> <code>,</code></td></tr>
+                <tr><td>3</td><td>PunctuationBracket</td><td><code>()</code> <code>{}</code> <code>[]</code> when used syntactically</td></tr>
+                <tr><td>4</td><td>Keyword</td><td><code>if</code>, <code>else</code>, <code>return</code>, <code>class</code>, etc.</td></tr>
+                <tr><td>5</td><td>IdentifierOperator</td><td><code>+</code>, <code>*</code>, etc.</td></tr>
+                <tr><td>6</td><td>Identifier</td><td>Non-specific catch-all for any identifier not better described elsewhere</td></tr>
+                <tr><td>7</td><td>IdentifierBuiltin</td><td>Identifiers built in to the language: <code>min</code>, <code>print</code> in Python</td></tr>
+                <tr><td>8</td><td>IdentifierNull</td><td>Identifiers representing null-like values: <code>None</code> in Python, <code>nil</code> in Go</td></tr>
+                <tr><td>9</td><td>IdentifierConstant</td><td><code>xyz</code> in <code>const xyz = "hello"</code></td></tr>
+                <tr><td>10</td><td>IdentifierMutableGlobal</td><td><code>var X = "hello"</code> in Go</td></tr>
+                <tr><td>11</td><td>IdentifierParameter</td><td>Parameter definition and references</td></tr>
+                <tr><td>12</td><td>IdentifierLocal</td><td>Identifiers for variable definitions and references within a local scope</td></tr>
+                <tr><td>13</td><td>IdentifierShadowed</td><td>Identifiers that shadow other identifiers in an outer scope</td></tr>
+                <tr><td>14</td><td>IdentifierNamespace</td><td>Unit of code abstraction/namespacing — package in Go/JVM, module in Python/JavaScript</td></tr>
+                <tr><td>15</td><td>IdentifierFunction</td><td>Function references, including calls</td></tr>
+                <tr><td>16</td><td>IdentifierFunctionDefinition</td><td>Function definition only</td></tr>
+                <tr><td>17</td><td>IdentifierMacro</td><td>Macro references, including invocations</td></tr>
+                <tr><td>18</td><td>IdentifierMacroDefinition</td><td>Macro definition only</td></tr>
+                <tr><td>19</td><td>IdentifierType</td><td>Non-builtin types</td></tr>
+                <tr><td>20</td><td>IdentifierBuiltinType</td><td>Builtin types only, such as <code>str</code> in Python or <code>int</code> in Go</td></tr>
+                <tr><td>21</td><td>IdentifierAttribute</td><td>Python decorators, C-like <code>__attribute__</code></td></tr>
+                <tr><td>22</td><td>RegexEscape</td><td><code>\b</code></td></tr>
+                <tr><td>23</td><td>RegexRepeated</td><td><code>*</code>, <code>+</code></td></tr>
+                <tr><td>24</td><td>RegexWildcard</td><td><code>.</code></td></tr>
+                <tr><td>25</td><td>RegexDelimiter</td><td><code>(</code> <code>)</code> <code>[</code> <code>]</code></td></tr>
+                <tr><td>26</td><td>RegexJoin</td><td><code>|</code>, <code>-</code></td></tr>
+                <tr><td>27</td><td>StringLiteral</td><td>Literal strings: <code>"Hello, world!"</code></td></tr>
+                <tr><td>28</td><td>StringLiteralEscape</td><td>Non-regex escapes: <code>\t</code>, <code>\n</code></td></tr>
+                <tr><td>29</td><td>StringLiteralSpecial</td><td>Datetimes within strings, special words, <code>{}</code> in format strings</td></tr>
+                <tr><td>30</td><td>StringLiteralKey</td><td><code>"key"</code> in <code>{ "key": "value" }</code>, useful in JSON</td></tr>
+                <tr><td>31</td><td>CharacterLiteral</td><td><code>'c'</code> in languages that differentiate strings and characters</td></tr>
+                <tr><td>32</td><td>NumericLiteral</td><td>Literal numbers, both floats and integers</td></tr>
+                <tr><td>33</td><td>BooleanLiteral</td><td><code>true</code>, <code>false</code></td></tr>
+                <tr><td>34</td><td>Tag</td><td>Used for XML-like tags</td></tr>
+                <tr><td>35</td><td>TagAttribute</td><td>Attribute name in XML-like tags</td></tr>
+                <tr><td>36</td><td>TagDelimiter</td><td>Delimiters for XML-like tags</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TextEncoding -->
+        <div class="docs-entry" id="text-encoding">
+          <h2 class="docs-entry-heading">
+            <a class="docs-entry-anchor" href="#text-encoding">TextEncoding</a>
+            <span class="docs-entry-kind">enum</span>
+          </h2>
+          <div class="docs-table-wrap">
+            <table class="docs-table docs-table--enum">
+              <thead>
+                <tr><th>Number</th><th>Name</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>0</td><td>UnspecifiedTextEncoding</td><td></td></tr>
+                <tr><td>1</td><td>UTF8</td><td></td></tr>
+                <tr><td>2</td><td>UTF16</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <footer class="footer">
+        <div>© 2026 The SCIP Authors | Apache-2.0 license</div>
+        <div class="footer-links">
+          <a href="./docs.html">Docs</a>
+          <a href="./artwork.html">Artwork</a>
+          <a href="./code-of-conduct.html">Code of conduct</a>
+          <a href="./governance.html">Governance</a>
+          <a href="https://discord.gg/w5TEzebTPk" target="_blank" rel="noopener noreferrer">Discord</a>
+          <a href="https://github.com/scip-code/scip" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </footer>
+    </div>
+    <script src="./assets/js/promo-bar.js" defer></script>
+  </body>
+</html>

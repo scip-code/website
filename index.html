@@ -53,15 +53,22 @@
             SCIP (pronunciation: "skip") is a language-agnostic protocol 
             for indexing source code, which can be used to power code 
             navigation functionality such as 
-            <span class="feature-tag" title="Jump to where a name is first created and explained.">Go to definition</span> and
-            <span class="feature-tag" title="See every place where this name is used in the whole project.">Find references</span>.
+            <span class="feature-tag" data-tooltip="Jump to where a name is first created and explained." tabindex="0">Go to definition</span><span class="feature-tag-expansion"> — opens where a name is first created</span> and
+            <span class="feature-tag" data-tooltip="See every place where this name is used in the whole project." tabindex="0">Find references</span><span class="feature-tag-expansion"> — every use of that name in the project</span>.
           </p>
           <div class="cta-row"></div>
         </div>
         <div class="card">
           <div class="tag">Key features</div>
           <ul class="list">
-            <li>Standardized index format</li>
+            <li>
+              <a
+                class="list-link"
+                href="https://github.com/scip-code/scip/blob/main/scip.proto"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Standardized index format</a>
+            </li>
             <li>Language-agnostic schema for indexers</li>
             <li>Interoperable tools and integrations</li>
           </ul>

@@ -212,6 +212,7 @@ a {
 }
 
 .feature-tag {
+  position: relative;
   border-bottom: 1px dashed var(--sky);
   transition: color 0.2s ease, border-bottom-color 0.2s ease;
   cursor: help;
@@ -220,6 +221,68 @@ a {
 .feature-tag:hover {
   color: var(--sky);
   border-bottom-color: var(--coral);
+}
+
+.feature-tag::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  padding: 6px 10px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(6, 0, 0, 0.18);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+  z-index: 100;
+}
+
+/* Small arrow pointing down */
+.feature-tag::before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--ink);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+  z-index: 100;
+}
+
+.feature-tag:hover::after,
+.feature-tag:hover::before,
+.feature-tag:focus-visible::after,
+.feature-tag:focus-visible::before {
+  opacity: 1;
+}
+
+/* title= tooltips are unreliable on touch and for many keyboard users; show
+   the same meaning inline when hover isn’t available or when focusing the term. */
+.feature-tag-expansion {
+  display: none;
+  font-size: 0.92em;
+  font-weight: 400;
+  color: rgba(6, 0, 0, 0.58);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .feature-tag-expansion {
+    display: inline;
+  }
+}
+
+.feature-tag:focus-visible + .feature-tag-expansion {
+  display: inline;
 }
 
 .cta-row {

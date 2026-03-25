@@ -9,6 +9,25 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
+    <div class="promo-bar" id="promo-bar" role="region" aria-label="Blog announcement" hidden>
+      <div class="promo-bar__inner">
+        <a class="promo-bar__link" href="#" target="_blank" rel="noopener noreferrer">
+          <span class="promo-bar__label">New</span>
+          <span class="promo-bar__title">The Future of SCIP</span>
+          <span class="promo-bar__cta">Read post</span>
+        </a>
+        <button type="button" class="promo-bar__close" aria-label="Dismiss announcement">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path
+              d="M4 4l8 8M12 4l-8 8"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
     <div class="page">
       <header class="nav">
         <div class="nav-title">
@@ -17,10 +36,10 @@
           </a>
         </div>
         <nav class="nav-links">
-          <a href="#tools">Indexers</a>
-          <a href="#contribute">Contribute</a>
+          <a href="./docs.html">Docs</a>
+          <a href="./governance.html">Governance</a>
           <a href="https://discord.gg/w5TEzebTPk" target="_blank" rel="noopener noreferrer">Discord</a>
-          <a href="https://github.com/scip-code" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://github.com/scip-code/scip" target="_blank" rel="noopener noreferrer">GitHub</a>
         </nav>
       </header>
 
@@ -34,15 +53,22 @@
             SCIP (pronunciation: "skip") is a language-agnostic protocol 
             for indexing source code, which can be used to power code 
             navigation functionality such as 
-            <span class="feature-tag" title="Jump to where a name is first created and explained.">Go to definition</span> and
-            <span class="feature-tag" title="See every place where this name is used in the whole project.">Find references</span>.
+            <span class="feature-tag" data-tooltip="Jump to where a name is first created and explained." tabindex="0">Go to definition</span><span class="feature-tag-expansion"> — opens where a name is first created</span> and
+            <span class="feature-tag" data-tooltip="See every place where this name is used in the whole project." tabindex="0">Find references</span><span class="feature-tag-expansion"> — every use of that name in the project</span>.
           </p>
           <div class="cta-row"></div>
         </div>
         <div class="card">
           <div class="tag">Key features</div>
           <ul class="list">
-            <li>Standardized index format</li>
+            <li>
+              <a
+                class="list-link"
+                href="https://github.com/scip-code/scip/blob/main/scip.proto"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Standardized index format</a>
+            </li>
             <li>Language-agnostic schema for indexers</li>
             <li>Interoperable tools and integrations</li>
           </ul>
@@ -104,7 +130,7 @@
             <p>
               Questions, suggestions, code, and docs contributions are welcome.
               The development docs outline project structure and common
-              workflows. Find us on <a class="list-link" href="https://github.com/scip-code">GitHub</a>.
+              workflows. Find us on <a class="list-link" href="https://github.com/scip-code/scip">GitHub</a>.
               Please read the <a class="list-link" href="./code-of-conduct.html">Code of Conduct</a> and
               <a class="list-link" href="./governance.html">Governance</a> pages before you contribute.
             </p>
@@ -117,13 +143,15 @@
       <footer class="footer">
         <div>© 2026 The SCIP Authors | Apache-2.0 license</div>
         <div class="footer-links">
+          <a href="./docs.html">Docs</a>
           <a href="./artwork.html">Artwork</a>
           <a href="./code-of-conduct.html">Code of conduct</a>
           <a href="./governance.html">Governance</a>
           <a href="https://discord.gg/w5TEzebTPk" target="_blank" rel="noopener noreferrer">Discord</a>
-          <a href="https://github.com/scip-code" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://github.com/scip-code/scip" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </footer>
     </div>
+    <script src="./assets/js/promo-bar.js" defer></script>
   </body>
 </html>

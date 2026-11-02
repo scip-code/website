@@ -667,6 +667,18 @@ a {
   text-decoration-color: var(--coral);
 }
 
+.docs-toc-tutorial {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
+  margin: 20px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid rgba(6, 0, 0, 0.09);
+  font-size: 14px;
+  color: rgba(6, 0, 0, 0.55);
+}
+
 .docs-section {
   margin-top: 56px;
 }

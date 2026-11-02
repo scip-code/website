@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A tutorial for writing a SCIP indexer: generating bindings, emitting symbols and occurrences, snapshot testing, and supporting language features." />
+    <title>Writing a SCIP indexer - SCIP Code Intelligence Protocol</title>
+    <link rel="icon" href="./assets/images/scip-icon-color.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <div class="promo-bar" id="promo-bar" role="region" aria-label="Blog announcement" hidden>
+      <div class="promo-bar__inner">
+        <a class="promo-bar__link" href="#" target="_blank" rel="noopener noreferrer">
+          <span class="promo-bar__label">New</span>
+          <span class="promo-bar__title">The Future of SCIP</span>
+          <span class="promo-bar__cta">Read post</span>
+        </a>
+        <button type="button" class="promo-bar__close" aria-label="Dismiss announcement">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path
+              d="M4 4l8 8M12 4l-8 8"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="page">
+      <header class="nav">
+        <div class="nav-title">
+          <a href="./index.html">
+            <img class="logo" src="./assets/images/scip-logo-color.svg" alt="SCIP" />
+          </a>
+        </div>
+        <nav class="nav-links">
+          <a href="./docs.html">Docs</a>
+          <a href="./governance.html">Governance</a>
+          <a href="https://discord.gg/w5TEzebTPk" target="_blank" rel="noopener noreferrer">Discord</a>
+          <a href="https://github.com/scip-code/scip" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero" id="top">
+          <div>
+            <span class="pill">Tutorial</span>
+            <h1 class="hero-title">Writing a SCIP indexer</h1>
+            <p class="hero-subtitle">
+              Write an indexer when no existing indexer covers your language. For choosing and running an existing indexer, see <a class="list-link" href="https://sourcegraph.com/docs/code-navigation/precise-code-navigation">language indexers</a>.
+            </p>
+            <span id="sourcegraph-recommended-indexers"> </span>
+            <span id="quick-reference"> </span>
+            <p class="section-subtitle">
+              The <a class="list-link" href="https://sourcegraph.com/docs/code-navigation/precise-code-navigation">indexer selection table</a> covers supported languages, build requirements, and compatibility limitations.
+            </p>
+          </div>
+        </section>
+
+        <nav class="section docs-section card docs-toc" aria-label="Tutorial contents">
+          <p class="docs-toc-title">Contents</p>
+          <div class="docs-toc-cols">
+            <a href="#writing-an-indexer">Writing an indexer</a>
+            <a href="#understanding-the-scip-protobuf-schema">Understanding the SCIP protobuf schema</a>
+            <a href="#importing-or-generating-scip-bindings">Importing or generating SCIP bindings</a>
+            <a href="#generating-minimal-index-with-occurrence-information">Generating minimal index with occurrence information</a>
+            <a href="#snapshot-testing-with-scip-cli">Snapshot testing with scip CLI</a>
+            <a href="#progressively-adding-support-for-language-features">Progressively adding support for language features</a>
+            <a href="#milestone-definitions">Milestone definitions</a>
+          </div>
+        </nav>
+
+        <section class="section docs-section" aria-label="Indexer tutorial">
+          <div class="docs-entry" id="writing-an-indexer">
+            <h2 class="docs-entry-heading"><a class="docs-entry-anchor" href="#writing-an-indexer">Writing an indexer</a></h2>
+            <p>An indexer writes definitions, references, documentation, and relationships in the <a class="list-link" href="https://github.com/scip-code/scip">SCIP format</a>. The <a class="list-link" href="https://github.com/scip-code/scip/blob/main/scip.proto">protobuf schema</a> defines the data contract; the <a class="list-link" href="https://github.com/scip-code/scip/blob/main/docs/CLI.md">SCIP CLI</a> provides validation and snapshot tools.</p>
+            <p>For protocol questions, use the <a class="list-link" href="https://github.com/scip-code/scip/issues">SCIP issue tracker</a>. The following guide covers implementation and validation; it is not a promise of support for a custom indexer.</p>
+          </div>
+
+          <div class="docs-entry" id="understanding-the-scip-protobuf-schema">
+            <h2 class="docs-entry-heading"><a class="docs-entry-anchor" href="#understanding-the-scip-protobuf-schema">Understanding the SCIP protobuf schema</a></h2>
+            <p>An <code>Index</code> contains metadata and a list of <code>Document</code> records. Each document has a path relative to the project root, occurrences associated with source ranges, and information about defined symbols. An index can also provide documentation for external symbols whose source is not indexed.</p>
+            <p>An <code>Occurrence</code> can describe syntactic information, such as <code>syntax_kind</code>, and semantic information, such as <code>symbol</code> and <code>symbol_roles</code>. Semantic identity connects a reference to its definition; diagnostics can attach additional information to a range.</p>
+            <p>Use the schema's comments as the field reference. Existing implementations such as <a class="list-link" href="https://github.com/sourcegraph/scip-typescript">scip-typescript</a> and <a class="list-link" href="https://github.com/scip-code/scip-java">scip-java</a> show how compiler information maps to SCIP.</p>
+            <p>See also the <a class="list-link" href="./docs.html">SCIP protocol reference</a> for messages, enumerations, and field descriptions.</p>
+          </div>
+
+          <div class="docs-entry" id="importing-or-generating-scip-bindings">
+            <h2 class="docs-entry-heading"><a class="docs-entry-anchor" href="#importing-or-generating-scip-bindings">Importing or generating SCIP bindings</a></h2>
+            <p>The SCIP repository provides bindings for several languages. Importing these avoids maintaining your own protobuf-generation toolchain. Alternatively, vendor the schema and generate bindings yourself when you need control over that process. Test compatibility with the Sourcegraph versions you intend to support.</p>
+          </div>
+
+          <div class="docs-entry" id="generating-minimal-index-with-occurrence-information">
+            <h2 class="docs-entry-heading"><a class="docs-entry-anchor" href="#generating-minimal-index-with-occurrence-information">Generating minimal index with occurrence information</a></h2>
+            <p>Use a compiler frontend or language server to resolve declarations and references. Traverse the analyzed source, record symbol identities and ranges, then serialize them with the SCIP bindings.</p>
+            <p>Use <code>index.scip</code> as the default output filename. With <code>scip.proto</code> and the index in the current directory, inspect the protobuf data with:</p>
+            <pre class="code" tabindex="0" aria-label="Decode a SCIP index"><code>protoc --decode=scip.Index scip.proto &lt; index.scip
+</code></pre>
+            <p>Make the output deterministic. For example, sort entries collected from hash maps before serializing them so repeated runs do not create unrelated snapshot changes.</p>
+          </div>
+
+          <div class="docs-entry" id="snapshot-testing-with-scip-cli">
+            <h2 class="docs-entry-heading"><a class="docs-entry-anchor" href="#snapshot-testing-with-scip-cli">Snapshot testing with scip CLI</a></h2>
+            <p>The SCIP CLI's <code>snapshot</code> command annotates source with the occurrences in an index. Check that ranges point to the correct tokens, definitions and references share the intended identities, and package names and versions distinguish external symbols correctly.</p>
+            <p>For example, this excerpt from a TypeScript index distinguishes a function declaration from a referenced compiler type:</p>
+            <pre class="code" tabindex="0" aria-label="TypeScript snapshot example"><code>function scriptElementKind(
+//       ^^^^^^^^^^^^^^^^^ definition scip-typescript npm @sourcegraph/scip-typescript 0.2.0 src/FileIndexer.ts/scriptElementKind().
+  node: ts.Node,
+//         ^^^^ reference scip-typescript npm typescript 4.6.2 lib/typescript.d.ts/ts/Node#
+</code></pre>
+            <p>Snapshot tests validate the emitted data. Also upload a fixture to Sourcegraph and check its navigation to verify that the data is usable end to end.</p>
+          </div>
+
+          <div class="docs-entry" id="progressively-adding-support-for-language-features">
+            <h2 class="docs-entry-heading"><a class="docs-entry-anchor" href="#progressively-adding-support-for-language-features">Progressively adding support for language features</a></h2>
+            <p>Navigation capabilities depend on the data emitted: shared symbol identities connect definitions and references, package information enables cross-repository navigation, and explicit relationships enable Find implementations. Hover documentation uses CommonMark; convert other markup before emitting it.</p>
+            <p>For large indexes, account for <a class="list-link" href="https://protobuf.dev/programming-guides/encoding/#size-limit">protobuf implementation limits</a>: serialized messages must be smaller than 2 GiB. Writing documents incrementally can avoid accumulating the entire index in one message, but each document must still fit. See the <a class="list-link" href="https://github.com/sourcegraph/scip-ruby/pull/190">scip-ruby streaming example</a>.</p>
+          </div>
+
+          <div class="docs-entry" id="milestone-definitions">
+            <h2 class="docs-entry-heading"><a class="docs-entry-anchor" href="#milestone-definitions">Milestone definitions</a></h2>
+            <p>A valid SCIP file is only the first checkpoint. Test the following behaviors on realistic projects.</p>
+
+            <h3 class="docs-sub-entry-heading" id="cross-repository-identity"><a class="docs-entry-anchor" href="#cross-repository-identity">Cross-repository identity</a></h3>
+            <p>Global SCIP symbols encode package identity and version as well as the symbol descriptor; local symbols do not. Emit matching identities for a package's definitions and its consumers' references. Test separately indexed producer and consumer repositories, including two versions of the same package. LSIF uses monikers for the corresponding cross-repository information.</p>
+
+            <h3 class="docs-sub-entry-heading" id="common-build-tool-integration"><a class="docs-entry-anchor" href="#common-build-tool-integration">Common build tool integration</a></h3>
+            <p>Resolve dependencies and generated source using the project's build system. Test a clean checkout as well as a developer's prepared environment so missing build steps are visible.</p>
+
+            <h3 class="docs-sub-entry-heading" id="the-long-tail-find-implementations"><a class="docs-entry-anchor" href="#the-long-tail-find-implementations">The long tail: Find implementations</a></h3>
+            <p>Emit relationships between interfaces, abstract declarations, and concrete implementations. Test language-specific cases such as inheritance, generics, and generated members. A valid index without these relationships cannot provide complete implementation navigation.</p>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div>© 2026 The SCIP Authors | Apache-2.0 license</div>
+        <div class="footer-links">
+          <a href="./docs.html">Docs</a>
+          <a href="./artwork.html">Artwork</a>
+          <a href="./code-of-conduct.html">Code of conduct</a>
+          <a href="./governance.html">Governance</a>
+          <a href="https://discord.gg/w5TEzebTPk" target="_blank" rel="noopener noreferrer">Discord</a>
+          <a href="https://github.com/scip-code/scip" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </footer>
+    </div>
+    <script src="./assets/js/promo-bar.js" defer></script>
+  </body>
+</html>
